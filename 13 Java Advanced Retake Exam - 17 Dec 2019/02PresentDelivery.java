@@ -11,6 +11,7 @@ public class PresentDelivery {
     private static int presents = 0;
     private static String command = null;
     private static char[][] matrix = null;
+    private static int allNiceKids = 0;
 
     public static void main(String[] args) {
         Scanner console = new Scanner(System.in);
@@ -20,7 +21,7 @@ public class PresentDelivery {
 
         fillMatrix(matrix, console);
 
-        int allNiceKids = niceKids;
+        
 
         while (presents > 0 && !"Christmas morning".equals(command = console.nextLine())) {
             matrix[santaRow][santaCol] = '-';
@@ -29,6 +30,7 @@ public class PresentDelivery {
             if (matrix[santaRow][santaCol] == 'V') {
                 presents--;
                 niceKids--;
+                allNiceKids++;
             }
 
             if (matrix[santaRow][santaCol] == 'C') {
@@ -46,7 +48,7 @@ public class PresentDelivery {
 
         printMatrix();
 
-        if (niceKids == 0) {
+        if (niceKids <= 0) {
             System.out.println("Good job, Santa! " + allNiceKids + " happy nice kid/s.");
         } else {
             System.out.println("No presents for " + niceKids + " nice kid/s.");
@@ -66,10 +68,12 @@ public class PresentDelivery {
     private static void givePresent(char[][] matrix, int rowMutator, int colMutator) {
             if (matrix[santaRow + rowMutator][santaCol + colMutator] == 'X') {
                 presents--;
+                allNiceKids++;
             }
             if (matrix[santaRow + rowMutator][santaCol + colMutator] == 'V') {
                 presents--;
                 niceKids--;
+                allNiceKids++;
             }
             matrix[santaRow + rowMutator][santaCol + colMutator] = '-';
     }
