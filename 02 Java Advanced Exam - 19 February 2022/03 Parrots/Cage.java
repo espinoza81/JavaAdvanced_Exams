@@ -43,7 +43,7 @@ public class Cage {
         return this.data.size();
     }
     public String report(){
-        return "Parrots available at " + this.name + System.lineSeparator() +
+        return "Parrots available at " + this.name + ":" + System.lineSeparator() +
                 this.data.stream().filter(Parrot::isAvailable).map(Parrot::toString).collect(Collectors.joining(System.lineSeparator()));
     }
 
